@@ -61,8 +61,8 @@ module RabbitMQ
         decode_resource_collection(@connection.get("nodes"))
       end
 
-      def node_info(name)
-        decode_resource(@connection.get("nodes/#{uri_encode(name)}"))
+      def node_info(name, options = {memory: false, binary: false})
+        decode_resource(@connection.get("nodes/#{uri_encode(name)}?memory=#{options[:memory]}&binary=#{options[:binary]}"))
       end
 
       def list_extensions
